@@ -1,9 +1,11 @@
 package models
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"math/rand"
+	"minta/docker"
 	"os"
 	"strconv"
 	"time"
@@ -11,49 +13,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// func test() {
-// 	dm, err := docker.NewDockerManager()
-// 	if err != nil {
-// 		log.Println(err.Error())
-// 		return
-// 	}
-// 	images := []string{
-// 		"mintesnotafework/sql_injection-image:v1.0",
-// 		"mintesnotafework/xss_playground-image:v1.0",
-// 		"mintesnotafework/command-injection-image:v1.0",
-// 		"mintesnotafework/broken-auth-image:v1.0",
-// 		"mintesnotafework/file-inclusion-image:v1.0",
-// 		"mintesnotafework/sensitive_data_exposure-image:v1.0",
-// 		"mintesnotafework/sql_injection-image:v1.0",
-// 		"mintesnotafework/insecure-deserialization-image:v1.0",
-// 		"mintesnotafework/sql_injection-image:v1.0",
-// 		"mintesnotafework/sql_injection-image:v1.0",
-// 		"mintesnotafework/web-goat-image:v1.0",
-// 		"mintesnotafework/mutillidea-image:v1.0",
-// 		"mintesnotafework/dvma-image:v1.0",
-// 		"nginx:stable-alpine3.21-perl",
-// 		"testcontainers/helloworld:1.2.0",
-// 		"testcontainers/helloworld:latest",
-// 	}
-// 	for _, image := range images {
-// 		err := dm.PullImage(context.Background(), image)
-// 		if err != nil {
-// 			log.Println(err.Error())
-// 		}
-// 	}
-// }
-
-// func test() {
-// 	dm, err := docker.NewDockerManager()
-// 	if err != nil {
-// 		log.Println(err.Error())
-// 		return
-// 	}
-
-// 	dm.PruneSystem(context.Background())
-// }
-
 func test() {
+	PullImage()
 	adminTest()
 	instructorTest()
 	studentTest()
@@ -1493,4 +1454,28 @@ func generateRandomString(length int) string {
 	}
 
 	return string(result)
+}
+
+func PullImage() {
+	dm, err := docker.NewDockerManager()
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+	images := []string{
+		"mintesnotafework/sql_injection-image:v1.0",
+		"mintesnotafework/xss_playground-image:v1.0",
+		"mintesnotafework/command-injection-image:v1.0",
+		"mintesnotafework/broken-auth-image:v1.0",
+		"mintesnotafework/file-inclusion-image:v1.0",
+		"mintesnotafework/sensitive_data_exposure-image:v1.0",
+		"mintesnotafework/insecure-deserialization-image:v1.0",
+		"mintesnotafework/browser-attackbox:v1.0",
+	}
+	for _, image := range images {
+		err := dm.PullImage(context.Background(), image)
+		if err != nil {
+			log.Println(err.Error())
+		}
+	}
 }
