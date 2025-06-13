@@ -57,7 +57,7 @@ func Connect() {
 		Certificates: []tls.Certificate{cert},
 		RootCAs:      certPool,
 		MinVersion:   tls.VersionTLS12,
-		ServerName:   "postgres.backend.ctf.me",
+		ServerName:   "postgres.ctf.me",
 	}
 
 	connConfig, err := pgx.ParseConfig(dsn)

@@ -52,7 +52,7 @@ func NewDockerManager() (*DockerManager, error) {
 		Certificates: []tls.Certificate{cert},
 		RootCAs:      certPool,
 		MinVersion:   tls.VersionTLS12,
-		ServerName:   "docker.backend.ctf.me",
+		ServerName:   "docker.ctf.me",
 	}
 
 	cli, err := client.NewClientWithOpts(
